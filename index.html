@@ -18,11 +18,14 @@
 </head>
 <body>
     <!-- BEM(block element modifier)을 이용하여 표기했다. -->
+    <!-- 이게 가만 보니까 id로 주는 애들은 큰 블럭들이고 그 하위 블럭들은 class로 주네 -->
+
+
     <!-- Navbar -->
     <nav id="navbar">
         <div class="navbar__logo">
             <i class="fab fa-diaspora"></i>
-            <!-- 파비콘이라는데 이거 아직 그냥 텍스트에 클래스준거 아님? 아니네 이거 어케한거지-->
+            <!-- 파비콘이라는데 이거 아직 그냥 텍스트에 클래스준거 아님? 아니네 이거 어케한거지. 위에 script src에 fontawesome때문인듯-->
             <a href="#">Ellie</a>
         </div>
         <div>
@@ -37,6 +40,19 @@
             </ul>
         </div>
     </nav>
+
+    <!-- Home -->
+    <section id="home">
+        <img
+          src="./image/profile.png"
+          alt="GG's profile photo"
+          class="home__avatar"
+        />
+        <h1 class="home__title">Hello, <br>I'm GO GYEOL</h1>
+        <h2 class="home_description">A Software Engineer currently residing in Daejeon, Korea(강조하고싶은문장)</h2>
+        <button class="home__contact">Contact me</button>
+    </section>
+
     <!-- About -->
     <section id="about"></section>
     <!-- Skills -->
