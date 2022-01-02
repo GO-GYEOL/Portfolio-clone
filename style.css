@@ -48,11 +48,22 @@ a{
     /* a태그 text-decoration 사라짐. 밑줄 사라짐 */
 }  
 ul{
-    list-style:none;
     padding-left:0;
-    /* ul태그 점 사라짐 */
+   
     /* padding-left가 40px나 들어가있는 것을 개발자모드로 확인 가능 */
 }
+li{
+    list-style:none;
+     /* li태그 점 사라짐 */
+}
+
+button{
+    background-color:transparent;
+    cursor:pointer;
+    border:none;
+    outline:none;
+}
+    /* 버튼태그 초기화 */
     
 
 /* Typography */
@@ -91,15 +102,18 @@ p{
     color:var(--color-white);
     padding:16px;
 }
-
+    /* 네브바 컨텐츠들 일렬로 나열, 꾸미기 */
+    
 .navbar__menu{
     display:flex;
 }
+    /* 네브바 메뉴 일렬로*/
 
 .navbar__logo{
     font-size:var(--font-medium);
     font-weight:var(--weight-semi-bold);
 }
+    /* 네브바 로고 */
 
 .navbar__menu__item{
     padding:8px 12px;
@@ -107,10 +121,45 @@ p{
     cursor:pointer;
     border-radius:var(--size-border-radius);
 }
+    /* 메뉴바 설정 */
 
 .navbar__menu__item.active {
     border:1px solid var(--color-white);
 }
+    /* 메뉴바 태두리주기 */
+    
 .navbar__menu__item:hover{
     background-color:var(--color-dark-pink);
+}
+    /* 메뉴바 호버효과적용 */
+
+/* Home */
+#home{
+    background:url("image/homebackground.png") center/cover no-repeat;
+    padding:40px;
+    text-align:center;
+}
+    /* 배경 만들기 */
+
+.home__avatar{
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    border:2px solid var(--color-light-white);
+}
+    /* 아바타 동그랗게 만들기 */
+
+.home__title,
+.home__description{
+    color:var(--color-white);
+}
+
+.home__contact{
+    color:var(--color-white);
+    font-size:var(--font-regular);
+    font-weight:var(--weight-regular);
+    margin:24px;
+    padding:8px 12px;
+    border:2px solid white;
+    border-radius:var(--size-border-radius);
 }
