@@ -1,7 +1,7 @@
 /* font-family: 'Noto Sans KR', sans-serif;  */
 
 /* Global */
-root{
+:root{
     /* Color */
     --color-white:#ffffff;
     --color-light-white:#eeeeee;
@@ -32,4 +32,30 @@ root{
 /* Universal tags */
 *{
     box-sizing:border-box;
+}
+
+/* Typography */
+h1{
+    font-size:var(--font-large);
+    font-weight:var(--weight-bold);
+    color:var(--color-black);
+    margin:16px 0;
+}
+h2{
+    font-size:var(--font-medium);
+    font-weight:var(--weight-semi-bold);
+    color:var(--color-black);
+    margin:8px 0;
+}
+h3{
+    font-size:var(--font-regular);
+    font-weight:var(--font-regular);
+    color:var(--color-black);
+    margin:8px 0;
+}
+p{
+    font-size:var(--font-regular);
+    font-weight:var(--font-regular);
+    color:var(--color-black);
+    margin:4px 0;
 }
