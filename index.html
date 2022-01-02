@@ -20,23 +20,24 @@
     <!-- BEM(block element modifier)을 이용하여 표기했다. -->
     <!-- 이게 가만 보니까 id로 주는 애들은 큰 블럭들이고 그 하위 블럭들은 class로 주네 -->
 
-    
+
     <!-- Navbar -->
     <nav id="navbar">
         <div class="navbar__logo">
             <i class="fab fa-diaspora"></i>
             <!-- 파비콘이라는데 이거 아직 그냥 텍스트에 클래스준거 아님? 아니네 이거 어케한거지. 위에 script src에 fontawesome때문인듯-->
-            <a href="#">Ellie</a>
+            <a href="#">GO GYEOL</a>
         </div>
         <div>
             <ul class="navbar__menu">
-                <li class="navbar__menu__item">Home</li>
+                <li class="navbar__menu__item active">Home</li>
+                    <!-- 하나를 우선 active로 준다. 클릭하면 테두리 생기게 하기 위해서 -->
                 <li class="navbar__menu__item">About</li>
                 <li class="navbar__menu__item">Skills</li>
                 <li class="navbar__menu__item">My work</li>
                 <li class="navbar__menu__item">Testimonial</li>
                 <li class="navbar__menu__item">Contact</li>
-            <!-- ul.navbar__menu>li.navbar__menu__item*6 으로 한번에 찍어낼 수 있다.-->
+            <!-- ul.navbar__menu>li.navbar__m enu__item*6 으로 한번에 찍어낼 수 있다.-->
             </ul>
         </div>
     </nav>
