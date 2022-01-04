@@ -299,3 +299,111 @@ p{
 .etc{
     padding:20px;
 }
+
+/* Work */
+.work__categories{
+    margin:40px;
+}
+.category__btn{
+    border:1px solid var(--color-dark-white);
+    border-radius:var(--size-border-radius);
+    font-size:var(--font-regular);
+    padding:8px 48px;
+}
+.category__btn.active,
+.category__btn:hover{
+    background-color:var(--color-pink);
+    color:var(--color-white);
+    /* categroy__btn이 active를 가지거나, 마우스가 올라간다면 */
+    /* 이것도 처음 보는 기능이다. 보통 >나 띄어쓰기를 해서 자식 혹은 자손요소를 가져오는 방식을 썼는데, 띄어쓰기를 하지 않으면 category__btn중 active클래스인 것 을 가져온다. */
+}
+.category__btn.active .category__count,
+.category__btn:hover .category__count{
+    opacity:1;
+    top:0;
+}
+    /* 오 신기해. 아래의 category__count와 합쳐서 숫자가 내려오는 기능 만들었다. */
+.category__count{
+    background-color:var(--color-orange);
+    border-radius:50%;
+    color:var(--color-white);
+    display:inline-block;
+    width:24px;
+    height:24px;
+    line-height:24px;
+    /* span태그이므로 너비랑 높이 주려면 display:inline-block준다. */
+    position:relative;
+    top:-20px;
+    left:4px;
+    opacity:0;
+    transition:all var(--animation-duration)
+}
+
+.work__projects{
+    display:flex;
+    flex-wrap:wrap;
+    /* flex-wrap은 공간이 모자라면 아래로 떨어지게 해준다. float:left가 display:flex와 flex-wrap:wrap의 합인가?*/
+    /* 플렉스박스이다. */
+    justify-content:center;
+}
+
+.project{
+    width:280px;
+    height:250px;
+    margin:2px;
+    /* work__projects라는 플렉스 박스에 속해있다. */
+    background:var(--color-light-white);
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    /* project사진이 세로 중앙에 위치할 수 있도록 하기 위해 project박스 자체를 flex박스로 만들어서 aline-items를 사용했으며 justify-content도 사용할 수 있게 하였다. */
+}
+
+.project__img{
+    max-width:100%;
+    max-height:100%
+    /* 이미지가 project를 넘어서 더 커지기 때문. */
+}
+
+.project__description{
+    position:absolute;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    /* flex-direction을 통해 두 줄로 나눌 수 있다. 안하면 한줄에 h3랑 span들어감 */
+    justify-content:center;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    opacity:0;
+    /* 블럭태그가 줄을 먹는 것 뿐이지 설정해주지 않는 한 width가 100%인건 아니구나? */
+    transform:translateY(10px);
+    /* 10px정도 내려놨다가 올라오는 효과 주기 위해 */
+    transition:all var(--animation-duration) ease-in;
+}
+.project:hover .project__description{
+    opacity:0.8;
+    transform:translateY(0px);
+}
+    /* 마우스 갖다대면 글씨 나오도록 함 */
+
+.project__description h3{
+    color:var(--color-white);
+}
+
+.project__description h3:after{
+    content:'';
+    display:block;
+    /* after는 inline속성이기 때문에 block이 없다면 content:''쓸 경우 어떤 것도 나타나지 않는다. 또한 h3옆에 나오겠지. inline이니까.*/
+    position:relative;
+    left:50%;
+    margin-left:-12px;
+    /* margin-left대신 transform:translate(-50%);로 해도될듯 */
+    margin-top:8px;
+    width:25px;
+    height:2px;
+    background-color:var(--color-dark-white);
+}
+    /* after 이용해서 구분선 만들었을 뿐임. border이용한 것이 아니라. 학원에서 강사님이 말했던 그것 */
