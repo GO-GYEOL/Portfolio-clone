@@ -407,3 +407,44 @@ p{
     background-color:var(--color-dark-white);
 }
     /* after 이용해서 구분선 만들었을 뿐임. border이용한 것이 아니라. 학원에서 강사님이 말했던 그것 */
+
+
+
+/* Testimonial */
+#testimonials{
+    background-color:var(--color-light-white);
+}
+
+.testimonials{
+    margin:40px;
+}
+
+.testimonial{
+    display:flex;
+    margin:32px 0;
+    /* 여기서 질문, 마진을 위아래 32주면 가운데는 겹치므로 총 64px가 들어가야되는거 아닌가? flex박스때문인가? */
+}
+
+.testimonial__avatar{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+}
+.testimonial__avatar:nth-child(odd){
+    margin-right:40px;
+}
+    /* testimonial__avatar의 자식중의 odd가 아니라 testimonial__avatar 중 odd인 요소들 가져온것 */
+.testimonial__avatar:nth-child(even){
+    margin-left:40px;
+}
+.testimonial__speech-bubble{
+    padding:18px;
+    background-color:var(--color-white);
+    border-radius:var(--size-border-radius);
+}
+.testimonial__speech-bubble p{
+    color:var(--color-light-grey);
+}
+.testimonial__speech-bubble a{
+    color:var(--color-pink);
+}
