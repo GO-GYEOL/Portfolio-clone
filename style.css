@@ -99,13 +99,17 @@ p{
 
 /* Navbar */
 #navbar{
+    position:fixed;
+    width:100%;
+    /* position쓰면 인라인으로 성질이 바뀌어버리기 때문에 컨텐츠만큼만 width가 자동으롲 잡힌다. 따라서 100%로 width 설정해줘야한다.*/
     display:flex;
     justify-content: space-between;
-    background-color:var(--color-pink);
+    background-color:transparent;
     align-items:center;
     /* align-items 속성은 플렉스 박스에서 플렉스 요소의 수직 방향 정렬 방식을 설정한다. */
     color:var(--color-white);
     padding:16px;
+    transition: all var(--animation-duration) ease-in-out;
 }
     /* 네브바 컨텐츠들 일렬로 나열, 꾸미기 */
     
@@ -118,6 +122,12 @@ p{
     font-size:var(--font-medium);
     font-weight:var(--weight-semi-bold);
 }
+
+#navbar.navbar--dark{
+    background-color:var(--color-pink);
+    padding:8px;
+}
+
     /* 네브바 로고 */
 
 .navbar__menu__item{
@@ -152,6 +162,7 @@ p{
     background:url("image/homebackground.png") center/cover no-repeat;
     padding:40px;
     text-align:center;
+    padding-top:100px;
 }
     /* 배경 만들기 */
 
