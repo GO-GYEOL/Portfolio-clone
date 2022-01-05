@@ -110,6 +110,7 @@ p{
     color:var(--color-white);
     padding:16px;
     transition: all var(--animation-duration) ease-in-out;
+    z-index: 1;
 }
     /* 네브바 컨텐츠들 일렬로 나열, 꾸미기 */
     
