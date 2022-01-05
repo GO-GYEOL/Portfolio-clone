@@ -40,15 +40,18 @@ homeContactBtn.addEventListener('click', ()=>{
     newScrollIntoView('#contact');
 }); 
 
-function newScrollIntoView(selector){
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior:"smooth"});
-}
+
+// Show "arrow up" button when scrolling down
+const arrowUp = document.querySelector('.arrow-up');
+document.addEventListener('scroll', ()=>{
+    if(window.scrollY > homeHeight /2){
+        arrowUp.classList.add('visible');
+    } else{
+        arrowUp.classList.remove('visible');
+    }
+})
 
 
-
-// 내 생각은 window.scrollY와 scroll 이벤트를 이용해 스크롤이 일정 위치 이상으로 내려가면 home의 투명도를 낮춘다.
-// 근데 투명도는 opacity, css이고, 점점 투명해지는거면 transition-duration을 써야하는데 이것 또한 css이다. 어떻게 해야하지?
 
 // Make home slowly fade to transparent as the windwo scrolls down.
 const home = document.querySelector('.home__container');
@@ -56,3 +59,14 @@ const homeHeight = home.getBoundingClientRect().height;
 document.addEventListener('scroll', ()=>{
     home.style.opacity = 1 - window.scrollY / homeHeight
 })
+
+
+// Handle Click on the "arrow up" button
+arrowUp.addEventListener('click', () => {
+    newScrollIntoView('#home');
+})
+
+function newScrollIntoView(selector){
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior:"smooth"});
+}
