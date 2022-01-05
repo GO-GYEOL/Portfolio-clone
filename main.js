@@ -44,3 +44,15 @@ function newScrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior:"smooth"});
 }
+
+
+
+// 내 생각은 window.scrollY와 scroll 이벤트를 이용해 스크롤이 일정 위치 이상으로 내려가면 home의 투명도를 낮춘다.
+// 근데 투명도는 opacity, css이고, 점점 투명해지는거면 transition-duration을 써야하는데 이것 또한 css이다. 어떻게 해야하지?
+
+// Make home slowly fade to transparent as the windwo scrolls down.
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', ()=>{
+    home.style.opacity = 1 - window.scrollY / homeHeight
+})
