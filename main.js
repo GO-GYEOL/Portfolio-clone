@@ -70,3 +70,56 @@ function newScrollIntoView(selector){
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior:"smooth"});
 }
+
+
+// 1) 쿼리셀렉터올 로 모든 프로젝트 불러오고, 이벤트리스너 클릭으로하고 클릭되면 펑션 발동, 그 펑션은 data-kind가 react, backend인 애들에 display:hidden 추가해주는 펑션이다. style.display:hidden하면될듯?
+
+// const projects = document.querySelectorAll('.project');
+// const webpageBtn = document.querySelector('.work__categories');
+// webpageBtn.addEventListener('click', ()=>{
+//     for(let i=0; i<8; i++){
+//         console.log(projects[i]);
+//         const kind = projects[i].dataset.kind;
+//         console.log(kind);
+//         if (kind == 'webpage'){
+//             projects[i].classList.remove('hidden');
+//         } else {
+//             projects[i].classList.add('hidden');
+//         }
+//     }
+// })
+// console.log(projects);
+// 이런식으로 하면 되느는데 버튼만 all webpage react backend로 나눠서 하면 되는거아냐
+// 히든 지우는 것 대신 return 썼었는데 아예 작동조차 안한다. return이 다른 의미인듯.
+
+// Projects
+const workBtnContainer = document.querySelector('.work__categories');
+const projectContainer = document.querySelector('.work__projects');
+const projects = document.querySelectorAll('.project')
+workBtnContainer.addEventListener('click', (e)=>{
+    const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+     // 이렇게 하는 이유는 숫자가 눌리는 경우는 span태그가 눌리는 것이므로 dataset.filter가 지정이 안돼있다. 그래서 부모노드의 dataset.filter 받아오는 것이다.
+    if(filter == null){
+        return;
+    }
+    projectContainer.classList.add('anim-out');
+    setTimeout(() => {
+        projects.forEach((project) => {
+            console.log(project);
+            if (filter === '*' || filter === project.dataset.type){
+                project.classList.remove('invisible');
+            } else {
+                project.classList.add('invisible');
+            }
+                // forEach는 for(let project of projects){}와 같다.
+                // let project;
+                // for(let i=0; i < projects.length; i++) {
+                //     project = projects[i];
+                // }
+                // 와도 같다
+        });
+        projectContainer.classList.remove('anim-out');
+    }, 300)
+    // 0.3초 뒤에 필터링하고 anim-out을 없애줌
+})
+// 필터 나오고, 이용해서 dataset.type가 filter와 같으면 히든 지우고 그렇지 않으면 히든 추가한다. 하면 끝일듯.
