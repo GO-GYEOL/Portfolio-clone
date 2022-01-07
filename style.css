@@ -189,6 +189,10 @@ p{
     border-radius:var(--size-border-radius);
 }
 
+.home__contact:hover{
+    background-color: var(--color-orange);
+}
+
 
 
 /* Section common */
@@ -333,6 +337,7 @@ p{
     border-radius:var(--size-border-radius);
     font-size:var(--font-regular);
     padding:8px 48px;
+    position:relative;
 }
 .category__btn.selected,
 .category__btn:hover{
@@ -356,9 +361,10 @@ p{
     height:24px;
     line-height:24px;
     /* span태그이므로 너비랑 높이 주려면 display:inline-block준다. */
-    position:relative;
+    position:absolute;
+    /* top에 -20px을 줘서 원래 자리에서 벗어났지만 position:relative이므로 사실은 기존 그 자리를 그대로 차지하고 있다. 그래서 부모에 relative주고 얘는 absolute로 바꿨다.*/
     top:-20px;
-    left:4px;
+    right:16px;
     opacity:0;
     transition:all var(--animation-duration)
 }
@@ -538,9 +544,19 @@ p{
 
 /* For below 768px screen width */
 @media screen and (max-width:768px) {
+    :root{
+        --font-large:30px;
+        --font-medium:18px;
+        --font-regular:16px;
+        --font-small:14px;
+        --font-micro:12px;
+    }
     .navbar__toggle-btn{
         display:block;
         /* hidden 대신 block으로 바꿔서 이젠 보여준다. */
+        top:20px;
+        right:16px;
+        font-size:var(--font-medium);
     }
     #navbar{
         flex-direction:column;
@@ -563,17 +579,30 @@ p{
         display:block;
     }
 
+    .section{
+        padding:16px;
+        padding-top:40px;
+    }
+
     .about__majors{
         flex-direction:column;
         /* 1열종대로 보여줌 */
+        margin-top:30px;
+        margin-bottom:0px;
     }
 
     .major{
-        margin-bottom:38px;
+        margin-bottom:30px;
     }
     
     .skillset{
         flex-direction:column;
+    }
+
+    .category__btn{
+        /* padding:8px; */
+        /* margin:4px 0; */
+        width:100%;
     }
 
     .project{
@@ -582,9 +611,34 @@ p{
         /* 오 배경을 늘려준다 신기함 */
     }
 
+    .testimonial{
+        flex-direction:column;
+        align-items:center;
+    }
+        /* testimonial은 flex 박스이고(display=flex), flex-direction은 column이다. 즉 세로배열 */
+        /* 그렇기 때문에 align-items:center를 줬을 때 가로기준 중앙으로 오는 것 같은 효과가 보여지는듯 */
+
     .testimonial__avatar{
-        width:80px;
-        height:80px;
+        width:120px;
+        height:120px;
         /* 사진이 상대적으로 너무 커지므로 줄여준다. */
+    }
+    .testimonial__avatar:nth-child(even),
+    .testimonial__avatar:nth-child(odd){
+        margin:0;
+        /* 기본모드에선 이전에 홀수애들은 우측에 마진, 짝수애들은 좌측에 마진 줬었음. 그래서 애들 마진 지워준 것. 그냥 nth-child(n)으로만 해도 될듯.*/
+        margin-bottom:8px;
+    }
+    .testimonial__speech-bubble{
+        order:1;
+        /* 기본은 order가 0으로 설정돼있다. 숫자가 커질수록 순서가 빨라지는 것. order=1로 해주면 testimonial의 자식요소인 speech-bubble이 다른 자식요소인 avatar보다 먼저온다 */
+    }
+    .arrow-up{
+        width:50px;
+        height:50px;
+        font-size:30px;
+        line-height:50px;
+        right:16px;
+        bottom:16px;
     }
 }
