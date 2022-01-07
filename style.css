@@ -425,7 +425,7 @@ p{
     /* 마우스 갖다대면 글씨 나오도록 함 */
 
 .project__description h3{
-    color:var(--color-white);
+    color:var(--color-orange);
 }
 
 .project__description h3:after{
@@ -434,10 +434,10 @@ p{
     /* after는 inline속성이기 때문에 block이 없다면 content:''쓸 경우 어떤 것도 나타나지 않는다. 또한 h3옆에 나오겠지. inline이니까.*/
     position:relative;
     left:50%;
-    margin-left:-12px;
+    transform:translateX(-50%);
     /* margin-left대신 transform:translate(-50%);로 해도될듯 */
     margin-top:8px;
-    width:25px;
+    width:50px;
     height:2px;
     background-color:var(--color-dark-white);
 }
@@ -546,6 +546,10 @@ p{
         flex-direction:column;
         /* 1열종대로 보여줌. 근데 toggle-btn은 포지션absolute이므로 이거의 영향은 안받는듯? */
         align-items:flex-start;
+        background-color:var(--color-pink);
+    }
+    #navbar.navbar--dark{
+        padding:16px;
     }
     .navbar__menu{
         flex-direction:column;
@@ -553,6 +557,10 @@ p{
         text-align:center;
         width:100%;
         display:none;
+    }
+
+    .navbar__menu.open{
+        display:block;
     }
 
     .about__majors{

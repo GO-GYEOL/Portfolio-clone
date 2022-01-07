@@ -12,6 +12,8 @@ document.addEventListener('scroll', () => {
     }
 });
 
+
+
 //Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu')
 navbarMenu.addEventListener('click', (event) => {
@@ -22,6 +24,8 @@ navbarMenu.addEventListener('click', (event) => {
     if(link == null){
         return;
     }
+    navbarMenu.classList.remove('open')
+    // 스크롤될때 항상 classList open 제거해줘서 메뉴창 닫아주기
     newScrollIntoView(link);
     // scrollIntoView는 그 엘리먼트를 포함하는 부모엘리먼트로 이동시켜준다.
     // 이부분 다시 한번 공부해보자. 되게 유용한 방법인듯
@@ -39,6 +43,15 @@ const homeContactBtn = document.querySelector('.home__contact')
 homeContactBtn.addEventListener('click', ()=>{
     newScrollIntoView('#contact');
 }); 
+
+// Navbar toggle button for small screen
+const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
+navbarToggleBtn.addEventListener('click', ()=>{
+    navbarMenu.classList.toggle('open');
+    // 이거뭔데? toggle??
+    //토글은 해당하는 요소에 이미 클래스가 지정되어져 있다면 remove 하고 만약 클래스가 지정되어져 있지 않다면 add 해주어요 :) 
+    // 토글링 한다고 할때는 버튼을 누르는 것처럼 (버튼이 켜져 있다면 꺼지고, 꺼져 있다면 켜지는것처럼) 클래스가 있다면 빼주고 없다면 추가해주는 유용한 API예요 :) 
+})
 
 
 // Show "arrow up" button when scrolling down
