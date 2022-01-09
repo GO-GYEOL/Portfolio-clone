@@ -27,6 +27,7 @@ navbarMenu.addEventListener('click', (event) => {
     navbarMenu.classList.remove('open')
     // 스크롤될때 항상 classList open 제거해줘서 메뉴창 닫아주기
     newScrollIntoView(link);
+    selectNavItem(target);
     // scrollIntoView는 그 엘리먼트를 포함하는 부모엘리먼트로 이동시켜준다.
     // 이부분 다시 한번 공부해보자. 되게 유용한 방법인듯
 })
@@ -145,3 +146,66 @@ workBtnContainer.addEventListener('click', (e)=>{
     // 0.3초 뒤에 필터링하고 anim-out을 없애줌
 })
 // 필터 나오고, 이용해서 dataset.type가 filter와 같으면 히든 지우고 그렇지 않으면 히든 추가한다. 하면 끝일듯.
+
+
+
+
+// 1. 모든 섹션 요소들과 메뉴아이템들을 가지고 온다.
+// 2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
+// 3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
+
+// 1.
+const sectionIds = ['#home', '#about', '#skills', '#work', '#testimonials', '#contact'];
+const sections = sectionIds.map(id => document.querySelector(id));
+// 각각 문자열을 가진 배열인데, map을 이용해 각각의 id를 dom요소로 변환하는 새로운 배열을 만든다.
+const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
+// `[data-link="${id}"]` 이부분 띠용? 어차피 스트링 아닌가? 왜 id앞뒤로 ""를 써줘야하는거지? data-link="#about"처럼. 어찌보면 당연한 것 같기도하고.
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active')
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+
+// 2. 
+const observerOptions = {
+    root:null,
+    rootMargin:'0px',
+    threshold:0.3,
+}
+
+const observerCallback = (entries, observer) =>{
+    entries.forEach(entry=>{
+        if(!entry.isIntersecting && entry.intersectionRatio > 0) {// entry가 진입할 때의 반대니까 빠져나가는 section을 가리키고 있다.
+            // 페이지 처음 시작하면 intersectionRatio가 하나도 없기 떄문에 entry.intersectionratio>0인 애들중에서만 처리
+            // console.log(entry.target); //빠져나가는 section
+            const index = sectionIds.indexOf(`#${entry.target.id}`);
+            // console.log(index, entry.target.id);
+            
+
+            // 스크롤링이 아래로 되어서 페이지가 올라옴
+            if(entry.boundingClientRect.y < 0) {
+                selectedNavIndex = index + 1;
+            } else{
+                selectedNavIndex = index - 1;
+            }
+        }
+    });
+}
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', () => {
+    if(window.scrollY === 0){ // 제일 위라면
+        selectedNavIndex = 0;
+    } else if (Math.ceil(window.scrollY + window.innerHeight) >= document.body.clientHeight // 반올림, 제일 밑으로 도달했다면
+    // 이거 window.scrollY는 문서가 수직으로 얼마나 스크롤됐는지,
+    // window.innerHeight는 스크롤막대의 높이, 즉 창의 내부 높이
+    ) {
+        selectedNavIndex = navItems.length - 1; 
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+    
+});
